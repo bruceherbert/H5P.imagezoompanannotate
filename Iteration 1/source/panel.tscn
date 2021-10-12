@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://images/fly-d-M-Qi-agRdFs-unsplash.jpg" type="Texture" id=1]
+[ext_resource path="res://images/image1.jpg" type="Texture" id=1]
 [ext_resource path="res://panel.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]

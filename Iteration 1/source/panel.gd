@@ -16,15 +16,19 @@ onready var zoom_factor = 0.1
 const MAX_ZOOM = 0.5
 const MIN_ZOOM = 0.1
 const PAN_FACTOR = 10
-onready var initial_zoom = 0.3
+export var initial_zoom = 0.3
 onready var current_zoom = initial_zoom
 var image_draggable = false
+
+var res = load("res://images/image2.jpg") # resource is loaded when line is executed
 
 const drawItem = preload("res://Draw.tscn")
 
 func _ready():
 	updateZoomFactorText()
 	initZoom()
+	
+	get_node("Image").texture = res
 
 func _on_Button_zoom_in_pressed():
 	if isActive:
@@ -52,7 +56,7 @@ func _input(event):
 		if event.is_action_pressed("zoom_out"):
 			zoom("out")
 		if event is InputEventMouseButton:
-			print("clicking")
+			print("clicking", event.button_index)
 			if event.button_index == BUTTON_LEFT and not event.pressed:
 				image_draggable = false
 		if event.is_action_pressed("draw_rectangle"):
@@ -99,6 +103,7 @@ func initZoom():
 	
 func updateZoomFactorText():
 	zoomFactorText.text = str("Zoom: ", current_zoom)
+
 
 func drawType(type):
 	print("Draw ",type)
