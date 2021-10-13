@@ -6,7 +6,7 @@
 - 1.1 Allows zoom in (up to 4 times)
 - 1.2 Allows zoom out (back to starting magnification)
 - 1.3 Allows dragging/panning of image
-- 1.4 Allows two images to be on screen at once (split screen)
+- 1.4 Allows two images to be on screen at once (split screen) (Suggested by Miriam)
 
 ### Iteration 2 - annotation
 - 2.1 Allows drawing of square, circle, line, arrow and text box
