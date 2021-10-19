@@ -3,13 +3,13 @@ extends Node
 # Version 1 - image zoom and pan 
 # Allows zoom in (up
 
-onready var paneA = $Viewports/ViewportContainer1/Viewport1/paneA
-onready var paneB = $Viewports/ViewportContainer2/Viewport2/paneB
+onready var paneA = $TabContainer/VIEW/Viewports/ViewportContainer1/Viewport1/paneA
+onready var paneB = $TabContainer/VIEW/Viewports/ViewportContainer2/Viewport2/paneB
 
-onready var viewport1 = $Viewports/ViewportContainer1/Viewport1
-onready var viewport2 = $Viewports/ViewportContainer2/Viewport2
-onready var camera1 = $Viewports/ViewportContainer1/Viewport1/Camera2D1
-onready var camera2 = $Viewports/ViewportContainer2/Viewport2/Camera2D2
+onready var viewport1 = $TabContainer/VIEW/Viewports/ViewportContainer1/Viewport1
+onready var viewport2 = $TabContainer/VIEW/Viewports/ViewportContainer2/Viewport2
+onready var camera1 = $TabContainer/VIEW/Viewports/ViewportContainer1/Viewport1/Camera2D1
+onready var camera2 = $TabContainer/VIEW/Viewports/ViewportContainer2/Viewport2/Camera2D2
 
 
 func _ready():

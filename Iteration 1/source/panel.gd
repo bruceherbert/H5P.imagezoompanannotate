@@ -1,34 +1,29 @@
 extends Node2D
 
-# Version 1 - image zoom and pan 
-# Allows zoom in (up to 4 times) 
-# Allows zoom out (back to starting magnification) 
-# Allows dragging/panning of image 
-
-# Define max zoom in/out
-# Define extents of panning
-# Active panel
-# Define key bindings
 onready var isActive = false
 onready var image = $Image
+onready var noZoom = $NoZoom
 onready var zoomFactorText = $Zoom_factor_text
 onready var zoom_factor = 0.1
+onready var sneaky_zoom = 27
 const MAX_ZOOM = 0.5
 const MIN_ZOOM = 0.1
 const PAN_FACTOR = 10
 export var initial_zoom = 0.3
 onready var current_zoom = initial_zoom
 var image_draggable = false
-
-var res = load("res://images/image2.jpg") # resource is loaded when line is executed
-
+export var image_to_load = "res://images/image1.jpg"
+onready var res = load(image_to_load) # resource is loaded when line is executed
 const drawItem = preload("res://Draw.tscn")
+var cursor_target = load("res://cursors/cursor_target.png")
+var cursor_drag = load("res://cursors/cursor_drag.png")
 
 func _ready():
 	updateZoomFactorText()
 	initZoom()
-	
 	get_node("Image").texture = res
+	#Input.set_custom_mouse_cursor(cursor_drag)
+	
 
 func _on_Button_zoom_in_pressed():
 	if isActive:
@@ -39,15 +34,16 @@ func _on_Button_zoom_out_pressed():
 		zoom("out")
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
+	print("area just clicked")
 	if isActive:
 		if Input.is_action_just_pressed("click"):
 			image_draggable = true
 
 func _on_Button_draw_rect_pressed():
-	drawType("Rectangle")
+	drawMode("Rectangle")
 
 func _on_Button_draw_text_pressed():
-	drawType("Text")
+	drawMode("Text")
 
 func _input(event):
 	if isActive:
@@ -58,11 +54,12 @@ func _input(event):
 		if event is InputEventMouseButton:
 			print("clicking", event.button_index)
 			if event.button_index == BUTTON_LEFT and not event.pressed:
+				print("is this happening?")
 				image_draggable = false
 		if event.is_action_pressed("draw_rectangle"):
-			drawType("Rectangle")
+			drawMode("Rectangle")
 		if event.is_action_pressed("draw_text"):
-			drawType("Text")
+			drawMode("Text")
 
 func _process(delta):
 	if isActive:
@@ -81,6 +78,8 @@ func _process(delta):
 		if image_draggable == false:
 			image.position.x += moveH
 			image.position.y += moveV
+			noZoom.position.x += moveH
+			noZoom.position.y += moveV
 
 func zoom(direction):
 	if direction == "in":
@@ -89,29 +88,48 @@ func zoom(direction):
 			current_zoom += zoom_factor
 			image.scale.x = current_zoom
 			image.scale.y = current_zoom
+			noZoom.position.x -= sneaky_zoom
+			noZoom.position.y -= sneaky_zoom
 	if direction == "out":
 		if current_zoom > MIN_ZOOM:
 			print("OUT current zoom: ",current_zoom)
 			current_zoom -= zoom_factor
 			image.scale.x = current_zoom
 			image.scale.y = current_zoom
+			noZoom.position.x += sneaky_zoom
+			noZoom.position.y += sneaky_zoom
 	updateZoomFactorText()
 
 func initZoom():
 	image.scale.x = initial_zoom
-	image.scale.y = initial_zoom	
+	image.scale.y = initial_zoom
 	
 func updateZoomFactorText():
 	zoomFactorText.text = str("Zoom: ", current_zoom)
 
-
-func drawType(type):
-	print("Draw ",type)
-	# change cursor depending on mode
-	# create instance
+func drawMode(type):
+	# MODES:
+	# PLACEMENT
+	# change cursor to + 
+	# placement/size - changes 
+	# 
+	# get origin anchor
+	
+	Input.set_custom_mouse_cursor(cursor_target)
+	
+	# if it is 
+	
 	var newItem = drawItem.instance()
 	newItem.init(type)
-	get_parent().add_child(newItem)
+
+	if type == "Rectangle":
+		image.add_child(newItem)
+	if type == "Text":
+		noZoom.add_child(newItem)
 	newItem.global_position = get_global_mouse_position()
 
-	# get origin anchor
+
+
+	# EDIT edit placement
+	# 
+	#
