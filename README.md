@@ -28,6 +28,21 @@
 - Only require a single image to be uploaded (or two if using in split screen mode)
 - Quick and easy to use – ability to create meaningful and useful work in 5-10 minutes
 
+## Use Cases
+### Some example use cases are: 
+- Dermal science/Health/Medicine training - examining skin/moles etc. - including with split screen, the ability to compare two samples taken over time 
+- Medicine/health training - viewing microscope slides 
+- Trades training – examining examples of welding/fabrication etc. 
+- Radiology 
+- Architectural/engineering  
+- Interpretation
+
+### Some examples of usage are: 
+- As part of a discussion with students in-class or online 
+- As part of a demonstration to students in-class or online 
+- As a part of a case study/client file to be worked on during/after class 
+- Provide students a means of annotating the image - identifying particular features that are in question such as changes over time - it can also allow students the ability to generate artefacts which can be used in larger pieces of formative or summative assessment 
+
 ## Suggestions from CL team
 - How this will fit in with other tools such as Feedback Fruits documentation tool (_Asked by Jessi_)
 - Used for immunology (_Suggested by Sally_)
