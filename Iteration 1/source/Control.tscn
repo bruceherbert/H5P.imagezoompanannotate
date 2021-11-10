@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://fonts/font_heading1.tres" type="DynamicFont" id=1]
-[ext_resource path="res://fonts/font_body.tres" type="DynamicFont" id=2]
+[ext_resource path="res://skin_assets/fonts/font_heading1.tres" type="DynamicFont" id=1]
+[ext_resource path="res://skin_assets/fonts/font_default.tres" type="DynamicFont" id=2]
 [ext_resource path="res://screen grabs and ideas/h5p_interface1.PNG" type="Texture" id=3]
 
 [node name="Control" type="Control"]

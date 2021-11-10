@@ -12,9 +12,11 @@ const PAN_FACTOR = 10
 export var initial_zoom = 0.3
 onready var current_zoom = initial_zoom
 var image_draggable = false
+const drawItem = preload("res://Draw.tscn")
+
 export var image_to_load = "res://images/image1.jpg"
 onready var res = load(image_to_load) # resource is loaded when line is executed
-const drawItem = preload("res://Draw.tscn")
+
 var cursor_target = load("res://cursors/cursor_target.png")
 var cursor_drag = load("res://cursors/cursor_drag.png")
 
@@ -24,7 +26,11 @@ func _ready():
 	get_node("Image").texture = res
 	#Input.set_custom_mouse_cursor(cursor_drag)
 	
-
+func _on_Area2D_input_event(viewport, event, shape_idx):
+	print("area just clicked")
+	if isActive:
+		if Input.is_action_just_pressed("click"):
+			image_draggable = true
 func _on_Button_zoom_in_pressed():
 	if isActive:
 		zoom("in")
@@ -32,12 +38,6 @@ func _on_Button_zoom_in_pressed():
 func _on_Button_zoom_out_pressed():
 	if isActive:
 		zoom("out")
-
-func _on_Area2D_input_event(viewport, event, shape_idx):
-	print("area just clicked")
-	if isActive:
-		if Input.is_action_just_pressed("click"):
-			image_draggable = true
 
 func _on_Button_draw_rect_pressed():
 	drawMode("Rectangle")

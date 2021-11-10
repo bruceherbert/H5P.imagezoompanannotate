@@ -1,0 +1,103 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://panel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Main.gd" type="Script" id=2]
+
+[node name="Main" type="Node"]
+script = ExtResource( 2 )
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EDIT" type="Control" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VIEW" type="Control" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/VIEW"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/VIEW/VBoxContainer"]
+margin_right = 1028.0
+margin_bottom = 20.0
+
+[node name="Button_Pane_A_active" type="Button" parent="TabContainer/VIEW/VBoxContainer/HBoxContainer"]
+margin_right = 37.0
+margin_bottom = 20.0
+text = "A ([)"
+
+[node name="Button_Pane_B_active" type="Button" parent="TabContainer/VIEW/VBoxContainer/HBoxContainer"]
+margin_left = 41.0
+margin_right = 78.0
+margin_bottom = 20.0
+text = "B (])"
+
+[node name="Viewports" type="HBoxContainer" parent="TabContainer/VIEW/VBoxContainer"]
+margin_top = 24.0
+margin_right = 1028.0
+margin_bottom = 524.0
+mouse_filter = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tree" type="Tree" parent="TabContainer/VIEW/VBoxContainer/Viewports"]
+margin_right = 500.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 500, 500 )
+
+[node name="paneA" parent="TabContainer/VIEW/VBoxContainer/Viewports/Tree" instance=ExtResource( 1 )]
+
+[node name="Tree2" type="Tree" parent="TabContainer/VIEW/VBoxContainer/Viewports"]
+margin_left = 504.0
+margin_right = 1004.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 500, 500 )
+size_flags_vertical = 3
+
+[node name="paneB" parent="TabContainer/VIEW/VBoxContainer/Viewports/Tree2" instance=ExtResource( 1 )]
+image_to_load = "res://images/image2.jpg"
+
+[node name="CaptureButton" type="Button" parent="TabContainer/VIEW/VBoxContainer/Viewports"]
+margin_left = 1008.0
+margin_right = 1028.0
+margin_bottom = 500.0
+text = ">"
+
+[node name="EXPORT" type="Control" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="CapturedImage" type="TextureRect" parent="TabContainer/EXPORT"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[connection signal="pressed" from="TabContainer/VIEW/VBoxContainer/HBoxContainer/Button_Pane_A_active" to="." method="_on_Button_Pane_A_active_pressed"]
+[connection signal="pressed" from="TabContainer/VIEW/VBoxContainer/HBoxContainer/Button_Pane_B_active" to="." method="_on_Button_Pane_B_active_pressed"]
+[connection signal="pressed" from="TabContainer/VIEW/VBoxContainer/Viewports/CaptureButton" to="." method="_on_CaptureButton_pressed"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Draggable.gd" type="Script" id=1]
+[ext_resource path="res://images/image1.jpg" type="Texture" id=2]
+
+[node name="Image" type="TextureRect"]
+margin_right = 5304.0
+margin_bottom = 7952.0
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="." to="." method="_on_Draggable_gui_input"]

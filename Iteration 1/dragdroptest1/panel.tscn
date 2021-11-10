@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://images/image1.jpg" type="Texture" id=2]
+[ext_resource path="res://panel.gd" type="Script" id=3]
+
+[node name="panel" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Image" type="TextureRect" parent="."]
+margin_left = -791.0
+margin_top = -1184.0
+margin_right = 4513.0
+margin_bottom = 6768.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_zoom_in" type="Button" parent="."]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 48.0
+margin_bottom = 64.0
+text = "+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_zoom_out" type="Button" parent="."]
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 48.0
+margin_bottom = 96.0
+text = "-"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_draw_rect" type="Button" parent="."]
+margin_left = 16.0
+margin_top = 104.0
+margin_right = 48.0
+margin_bottom = 136.0
+text = "R"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_draw_text" type="Button" parent="."]
+margin_left = 16.0
+margin_top = 136.0
+margin_right = 48.0
+margin_bottom = 168.0
+text = "T"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Zoom_factor_text" type="Label" parent="."]
+margin_left = 56.0
+margin_top = 32.0
+margin_right = 128.0
+margin_bottom = 46.0
+text = "Zoom: 1x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NoZoom" type="Node2D" parent="."]
+
+[connection signal="gui_input" from="Image" to="." method="_on_Image_gui_input"]
+[connection signal="pressed" from="Button_draw_rect" to="." method="_on_Button_draw_rect_pressed"]
+[connection signal="pressed" from="Button_draw_text" to="." method="_on_Button_draw_text_pressed"]

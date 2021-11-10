@@ -15,9 +15,9 @@ position = Vector2( 264.6, 398.8 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 1 )
 
-[node name="Area2D" type="Area2D" parent="Image"]
+[node name="CollisionContainerArea2d" type="Area2D" parent="Image"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Image/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Image/CollisionContainerArea2d"]
 scale = Vector2( 10, 10 )
 shape = SubResource( 1 )
 
@@ -66,12 +66,13 @@ __meta__ = {
 }
 
 [node name="Image_attribution" type="Label" parent="."]
-margin_left = 8.0
-margin_top = 584.0
-margin_right = 490.0
-margin_bottom = 598.0
+margin_left = 18.0
+margin_top = 560.0
+margin_right = 500.0
+margin_bottom = 574.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Image attribution: FLY:D via unsaplash (accessed 5/10/21)"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -89,7 +90,7 @@ __meta__ = {
 
 [node name="NoZoom" type="Node2D" parent="."]
 
-[connection signal="input_event" from="Image/Area2D" to="." method="_on_Area2D_input_event"]
+[connection signal="input_event" from="Image/CollisionContainerArea2d" to="." method="_on_CollisionContainerArea2d_input_event"]
 [connection signal="pressed" from="Button_zoom_in" to="." method="_on_Button_zoom_in_pressed"]
 [connection signal="pressed" from="Button_zoom_out" to="." method="_on_Button_zoom_out_pressed"]
 [connection signal="pressed" from="Button_draw_rect" to="." method="_on_Button_draw_rect_pressed"]
