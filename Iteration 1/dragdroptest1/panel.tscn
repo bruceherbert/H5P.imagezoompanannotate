@@ -7,10 +7,8 @@
 script = ExtResource( 3 )
 
 [node name="Image" type="TextureRect" parent="."]
-margin_left = -791.0
-margin_top = -1184.0
-margin_right = 4513.0
-margin_bottom = 6768.0
+margin_right = 5304.0
+margin_bottom = 7952.0
 rect_scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 2 )
 __meta__ = {
@@ -70,5 +68,7 @@ __meta__ = {
 [node name="NoZoom" type="Node2D" parent="."]
 
 [connection signal="gui_input" from="Image" to="." method="_on_Image_gui_input"]
+[connection signal="pressed" from="Button_zoom_in" to="." method="_on_Button_zoom_in_pressed"]
+[connection signal="pressed" from="Button_zoom_out" to="." method="_on_Button_zoom_out_pressed"]
 [connection signal="pressed" from="Button_draw_rect" to="." method="_on_Button_draw_rect_pressed"]
 [connection signal="pressed" from="Button_draw_text" to="." method="_on_Button_draw_text_pressed"]

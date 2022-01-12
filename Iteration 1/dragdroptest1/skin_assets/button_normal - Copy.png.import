@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/AddImage.PNG-e969d4830c4b69c41d5355bb7a59be00.stex"
+path="res://.import/button_normal - Copy.png-9b65ff4098b2132f81b584386ae6693c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/AddImage.PNG"
-dest_files=[ "res://.import/AddImage.PNG-e969d4830c4b69c41d5355bb7a59be00.stex" ]
+source_file="res://skin_assets/button_normal - Copy.png"
+dest_files=[ "res://.import/button_normal - Copy.png-9b65ff4098b2132f81b584386ae6693c.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

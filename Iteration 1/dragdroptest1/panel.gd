@@ -6,7 +6,7 @@ onready var image = $Image
 onready var noZoom = $NoZoom
 onready var zoomFactorText = $Zoom_factor_text
 onready var zoom_factor = 0.1
-onready var sneaky_zoom = 27
+onready var sneaky_zoom = 100
 const MAX_ZOOM = 0.5
 const MIN_ZOOM = 0.1
 const PAN_FACTOR = 10
@@ -34,6 +34,7 @@ func _on_Image_gui_input(event):
 	if event is InputEventMouseMotion and drag_position:
 		# this is the part that makes it move
 		image.rect_global_position = get_global_mouse_position() - drag_position
+		noZoom.global_position = get_global_mouse_position() -drag_position
 
 func _input(event):
 	if isActive:
@@ -41,6 +42,7 @@ func _input(event):
 			zoom("in")
 		if event.is_action_pressed("zoom_out"):
 			zoom("out")
+		
 		if event.is_action_pressed("draw_rectangle"):
 			drawMode("Rectangle")
 		if event.is_action_pressed("draw_text"):
@@ -56,15 +58,17 @@ func keyboardControl(delta):
 		input_vector.y = Input.get_action_strength("pan_down") - Input.get_action_strength("pan_up")
 		input_vector = input_vector.normalized()
 		var moveH = input_vector.x * PAN_FACTOR
-		var moveV = input_vector.y * PAN_FACTOR	
+		var moveV = input_vector.y * PAN_FACTOR
 		
 		if image_draggable:
 			print("Image is draggable ", image_draggable)
 			image.global_position = get_global_mouse_position()
+			noZoom.global_position = get_global_mouse_position()
 		
 		if image_draggable == false:
 			image.rect_position.x += moveH
 			image.rect_position.y += moveV
+			
 			noZoom.global_position.x += moveH
 			noZoom.global_position.y += moveV
 
@@ -74,6 +78,12 @@ func _on_Button_draw_rect_pressed():
 func _on_Button_draw_text_pressed():
 	drawMode("Text")
 
+func _on_Button_zoom_in_pressed():
+	zoom("in")
+
+func _on_Button_zoom_out_pressed():
+	zoom("out")
+
 func zoom(direction):
 	if direction == "in":
 		if current_zoom < MAX_ZOOM:
@@ -81,16 +91,16 @@ func zoom(direction):
 			current_zoom += zoom_factor
 			image.rect_scale.x = current_zoom
 			image.rect_scale.y = current_zoom
-			noZoom.position.x -= sneaky_zoom
-			noZoom.position.y -= sneaky_zoom
+			noZoom.position.x -= global_position.x + sneaky_zoom * current_zoom
+			noZoom.position.y -= global_position.y + sneaky_zoom  * current_zoom
 	if direction == "out":
 		if current_zoom > MIN_ZOOM:
 			print("OUT current zoom: ",current_zoom)
 			current_zoom -= zoom_factor
 			image.rect_scale.x = current_zoom
 			image.rect_scale.y = current_zoom
-			noZoom.position.x += sneaky_zoom
-			noZoom.position.y += sneaky_zoom
+			noZoom.position.x += global_position.x + sneaky_zoom  * current_zoom
+			noZoom.position.y += global_position.y + sneaky_zoom  * current_zoom
 	updateZoomFactorText()
 
 func initZoom():
@@ -102,17 +112,6 @@ func updateZoomFactorText():
 
 
 func drawMode(type):
-	# MODES:
-	# PLACEMENT
-	# change cursor to + 
-	# placement/size - changes 
-	# 
-	# get origin anchor
-	
-	#Input.set_custom_mouse_cursor(cursor_target)
-	
-	# if it is 
-	
 	var newItem = drawItem.instance()
 	newItem.init(type)
 
@@ -120,7 +119,7 @@ func drawMode(type):
 		image.add_child(newItem)
 	if type == "Text":
 		noZoom.add_child(newItem)
+	
 	newItem.global_position = get_global_mouse_position()
 	# EDIT edit placement
 	# 
-	#

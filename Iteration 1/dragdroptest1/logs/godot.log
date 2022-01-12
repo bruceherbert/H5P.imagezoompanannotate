@@ -4,17 +4,7 @@ OpenGL ES Batching: ON
  
 IN current zoom: 0.3
 OUT current zoom: 0.4
-IN current zoom: 0.3
-OUT current zoom: 0.4
 OUT current zoom: 0.3
-IN current zoom: 0.2
-IN current zoom: 0.3
-OUT current zoom: 0.4
-OUT current zoom: 0.3
-OUT current zoom: 0.2
-OUT current zoom: 0.1
-IN current zoom: 0
-IN current zoom: 0.1
 IN current zoom: 0.2
 IN current zoom: 0.3
 IN current zoom: 0.4
@@ -23,7 +13,3 @@ OUT current zoom: 0.4
 OUT current zoom: 0.3
 IN current zoom: 0.2
 IN current zoom: 0.3
-OUT current zoom: 0.4
-OUT current zoom: 0.3
-OUT current zoom: 0.2
-IN current zoom: 0.1
